@@ -38,9 +38,16 @@ const Header = () => {
         <div className="container mx-auto px-6 py-4">
           <nav className="flex items-center justify-between">
             <div className="flex items-center space-x-8">
-              <div className="logo text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+              <a 
+                href="#" 
+                className="logo text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent hover:scale-105 transition-transform duration-300 cursor-pointer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
                 Journey Verse
-              </div>
+              </a>
               <div className="hidden md:flex items-center space-x-6">
                 <a href="#" className="nav-link">Travel Guides</a>
                 <a href="#" className="nav-link">Hotels</a>
