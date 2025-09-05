@@ -19,7 +19,7 @@ const Hero: React.FC<HeroProps> = ({ scrollY }) => {
         <p className="hero-subtitle mb-8">
           Design epic itineraries, browse traveler-tested guides,<br />
           and handle bookings like a pro — all your travel needs in<br />
-          one place, fr
+          one place
         </p>
         
         <button 
