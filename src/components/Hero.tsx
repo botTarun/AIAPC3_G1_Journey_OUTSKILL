@@ -1,10 +1,14 @@
 import React from 'react';
+import { useAuth } from '../contexts/AuthContext';
 
 interface HeroProps {
   scrollY: number;
+  onSignUpClick: () => void;
 }
 
-const Hero: React.FC<HeroProps> = ({ scrollY }) => {
+const Hero: React.FC<HeroProps> = ({ scrollY, onSignUpClick }) => {
+  const { user } = useAuth();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 py-20">
       <div 
@@ -21,8 +25,13 @@ const Hero: React.FC<HeroProps> = ({ scrollY }) => {
           one place, fr
         </p>
         
-        <button className="btn-hero group">
-          <span className="relative z-10">Start Your Journey</span>
+        <button 
+          className="btn-hero group"
+          onClick={user ? undefined : onSignUpClick}
+        >
+          <span className="relative z-10">
+            {user ? 'Welcome Back!' : 'Start Your Journey'}
+          </span>
           <div className="absolute inset-0 bg-gradient-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
         </button>
       </div>
