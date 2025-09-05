@@ -8,7 +8,6 @@ import AuthModal from './components/AuthModal';
 
 function App() {
   const [scrollY, setScrollY] = useState(0);
-  const [authModalOpen, setAuthModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -16,22 +15,13 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleSignUpClick = () => {
-    setAuthModalOpen(true);
-  };
   return (
     <div className="min-h-screen bg-dark text-white overflow-x-hidden">
       <BackgroundElements scrollY={scrollY} />
       <Header />
-      <Hero scrollY={scrollY} onSignUpClick={handleSignUpClick} />
+      <Hero scrollY={scrollY} />
       <FeaturePreview />
       <FeatureIcons />
-      
-      <AuthModal 
-        isOpen={authModalOpen}
-        onClose={() => setAuthModalOpen(false)}
-        initialMode="signup"
-      />
     </div>
   );
 }

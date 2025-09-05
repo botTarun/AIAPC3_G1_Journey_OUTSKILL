@@ -2,10 +2,9 @@ import React from 'react';
 
 interface HeroProps {
   scrollY: number;
-  onSignUpClick: () => void;
 }
 
-const Hero: React.FC<HeroProps> = ({ scrollY, onSignUpClick }) => {
+const Hero: React.FC<HeroProps> = ({ scrollY }) => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 py-20">
@@ -25,7 +24,6 @@ const Hero: React.FC<HeroProps> = ({ scrollY, onSignUpClick }) => {
         
         <button 
           className="btn-hero group"
-          onClick={onSignUpClick}
         >
           <span className="relative z-10">
             Start Your Journey
