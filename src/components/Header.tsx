@@ -3,7 +3,12 @@ import { LogOut } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import AuthModal from './AuthModal';
 
-const Header = () => {
+interface HeaderProps {
+  onNavigate?: (page: 'home' | 'experiences') => void;
+  currentPage?: 'home' | 'experiences';
+}
+
+const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage = 'home' }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
@@ -26,6 +31,22 @@ const Header = () => {
     await signOut();
   };
 
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (onNavigate) {
+      onNavigate('home');
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleExperiencesClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (onNavigate) {
+      onNavigate('experiences');
+    }
+  };
+
   return (
     <>
       <header 
@@ -41,17 +62,28 @@ const Header = () => {
               <a 
                 href="#" 
                 className="logo text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent hover:scale-105 transition-transform duration-300 cursor-pointer"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
+                onClick={handleLogoClick}
               >
                 Journey Verse
               </a>
               <div className="hidden md:flex items-center space-x-6">
+                <a 
+                  href="#" 
+                  className={`nav-link ${currentPage === 'home' ? 'text-white' : ''}`}
+                  onClick={handleLogoClick}
+                >
+                  Home
+                </a>
                 <a href="#" className="nav-link">Travel Guides</a>
                 <a href="#" className="nav-link">Hotels</a>
-                <a href="#" className="nav-link">Experiences</a>
+                <a 
+                  href="#" 
+                  className={`nav-link ${currentPage === 'experiences' ? 'text-white' : ''}`}
+                  onClick={handleExperiencesClick}
+                >
+                  Experiences
+                </a>
+                <a href="#" className="nav-link">Pricing</a>
               </div>
             </div>
             

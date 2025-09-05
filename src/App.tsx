@@ -4,10 +4,11 @@ import Hero from './components/Hero';
 import FeaturePreview from './components/FeaturePreview';
 import FeatureIcons from './components/FeatureIcons';
 import BackgroundElements from './components/BackgroundElements';
-import AuthModal from './components/AuthModal';
+import ExperiencesPage from './components/ExperiencesPage';
 
 function App() {
   const [scrollY, setScrollY] = useState(0);
+  const [currentPage, setCurrentPage] = useState<'home' | 'experiences'>('home');
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -15,10 +16,20 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  if (currentPage === 'experiences') {
+    return (
+      <div className="min-h-screen bg-dark text-white overflow-x-hidden">
+        <BackgroundElements scrollY={scrollY} />
+        <Header onNavigate={setCurrentPage} currentPage={currentPage} />
+        <ExperiencesPage />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-dark text-white overflow-x-hidden">
       <BackgroundElements scrollY={scrollY} />
-      <Header />
+      <Header onNavigate={setCurrentPage} currentPage={currentPage} />
       <Hero scrollY={scrollY} />
       <FeaturePreview />
       <FeatureIcons />
