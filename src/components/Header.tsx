@@ -39,7 +39,7 @@ const Header = () => {
           <nav className="flex items-center justify-between">
             <div className="flex items-center space-x-8">
               <div className="logo text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                Journey
+                Journey Verse
               </div>
               <div className="hidden md:flex items-center space-x-6">
                 <a href="#" className="nav-link">Travel Guides</a>

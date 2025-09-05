@@ -105,7 +105,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMode = 'l
           {/* Header */}
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2">
-              {mode === 'login' ? 'Welcome Back' : 'Join Journey'}
+              {mode === 'login' ? 'Welcome Back' : 'Join Journey Verse'}
             </h2>
             <p className="text-gray-400">
               {mode === 'login' 

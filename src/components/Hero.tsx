@@ -13,7 +13,7 @@ const Hero: React.FC<HeroProps> = ({ scrollY }) => {
         style={{ transform: `translateY(${scrollY * 0.2}px)` }}
       >
         <h1 className="hero-title mb-6">
-          Journey - Your Travel Buddy
+          Journey Verse - Your Travel Buddy
         </h1>
         
         <p className="hero-subtitle mb-8">
