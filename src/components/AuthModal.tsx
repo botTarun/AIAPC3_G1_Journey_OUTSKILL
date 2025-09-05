@@ -20,6 +20,11 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMode = 'l
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
+  // Update mode when initialMode changes
+  React.useEffect(() => {
+    setMode(initialMode);
+  }, [initialMode]);
+
   const { signIn, signUp } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
