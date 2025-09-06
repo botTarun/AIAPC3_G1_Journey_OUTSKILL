@@ -210,16 +210,16 @@ const FeaturePreview = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Experience India Like Never Before
+              Discover Amazing Destinations
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Discover breathtaking destinations through our interactive gallery and explore must-visit places on our dynamic map
+              Explore breathtaking destinations through our interactive photo gallery
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             {/* Enhanced Photo Gallery */}
-            <div className="group">
+            <div className="group w-full">
               <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 hover:bg-white/10 transition-all duration-500 hover:scale-105">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-2 bg-purple-500/20 rounded-lg">
@@ -316,135 +316,6 @@ const FeaturePreview = () => {
                 <div 
                   ref={mapRef}
                   className="relative h-96 rounded-xl overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 cursor-grab active:cursor-grabbing select-none border border-white/10"
-                  onMouseDown={handleMouseDown}
-                  onMouseMove={handleMouseMove}
-                  onMouseUp={handleMouseUp}
-                  onMouseLeave={handleMouseUp}
-                >
-                  <div 
-                    className="absolute inset-0 transition-transform duration-100"
-                    style={{ 
-                      transform: `translate(${mapPosition.x}px, ${mapPosition.y}px)`,
-                      filter: 'drop-shadow(0 0 20px rgba(6, 182, 212, 0.4))'
-                    }}
-                  >
-                    {/* Enhanced India Map SVG */}
-                    <svg 
-                      viewBox="0 0 200 150" 
-                      className="w-full h-full"
-                    >
-                      {/* India outline with gradient */}
-                      <defs>
-                        <linearGradient id="mapGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" style={{stopColor: 'rgba(6, 182, 212, 0.3)'}} />
-                          <stop offset="100%" style={{stopColor: 'rgba(139, 92, 246, 0.3)'}} />
-                        </linearGradient>
-                      </defs>
-                      
-                      <path
-                        d="M50 30 L60 25 L75 28 L85 35 L95 40 L105 45 L115 50 L125 55 L130 65 L135 75 L140 85 L145 95 L150 105 L145 115 L140 120 L130 125 L120 130 L110 125 L100 120 L90 115 L80 110 L70 105 L60 100 L55 90 L50 80 L45 70 L40 60 L45 50 L50 40 Z"
-                        fill="url(#mapGradient)"
-                        stroke="rgba(6, 182, 212, 0.8)"
-                        strokeWidth="2"
-                      />
-                      
-                      {/* Important Places with enhanced interactions */}
-                      {importantPlaces.map((place) => (
-                        <g key={place.id}>
-                          {/* Pulsing circle effect */}
-                          <circle 
-                            cx={place.x} 
-                            cy={place.y} 
-                            r={hoveredPlace === place.id ? "12" : "8"} 
-                            fill={visitedPlaces.has(place.id) ? "rgba(34, 197, 94, 0.3)" : "rgba(239, 68, 68, 0.2)"} 
-                            className="animate-ping transition-all duration-300"
-                          />
-                          {/* Main marker */}
-                          <circle 
-                            cx={place.x} 
-                            cy={place.y} 
-                            r={hoveredPlace === place.id ? "6" : "4"} 
-                            fill={visitedPlaces.has(place.id) ? "#22c55e" : "#ef4444"} 
-                            className="cursor-pointer transition-all duration-300 hover:scale-125"
-                            onMouseEnter={() => setHoveredPlace(place.id)}
-                            onMouseLeave={() => setHoveredPlace(null)}
-                            onClick={() => markPlaceAsVisited(place.id)}
-                          />
-                          {/* Place label */}
-                          <text
-                            x={place.x}
-                            y={place.y - 12}
-                            textAnchor="middle"
-                            className="fill-white text-xs font-bold pointer-events-none transition-all duration-300"
-                            style={{ 
-                              textShadow: '0 0 8px rgba(0,0,0,0.8)',
-                              fontSize: hoveredPlace === place.id ? '14px' : '12px'
-                            }}
-                          >
-                            {place.name}
-                          </text>
-                          
-                          {/* Visited checkmark */}
-                          {visitedPlaces.has(place.id) && (
-                            <text
-                              x={place.x + 8}
-                              y={place.y - 8}
-                              className="fill-green-400 text-xs font-bold pointer-events-none"
-                            >
-                              ✓
-                            </text>
-                          )}
-                        </g>
-                      ))}
-                      
-                      {/* Animated connecting lines */}
-                      <g stroke="rgba(6, 182, 212, 0.4)" strokeWidth="2" fill="none">
-                        <line x1="42.5" y1="40" x2="55" y2="56.7" className="animate-pulse" />
-                        <line x1="55" y1="56.7" x2="62.5" y2="73.3" className="animate-pulse" style={{ animationDelay: '0.5s' }} />
-                        <line x1="62.5" y1="73.3" x2="70" y2="63.3" className="animate-pulse" style={{ animationDelay: '1s' }} />
-                        <line x1="42.5" y1="40" x2="47.5" y2="50" className="animate-pulse" style={{ animationDelay: '1.5s' }} />
-                      </g>
-                    </svg>
-                  </div>
-                  
-                  {/* Place tooltip */}
-                  {hoveredPlace && (
-                    <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-sm rounded-xl p-4 text-white max-w-xs">
-                      {importantPlaces
-                        .filter(place => place.id === hoveredPlace)
-                        .map(place => (
-                          <div key={place.id}>
-                            <h4 className="font-bold text-lg text-cyan-400">{place.name}</h4>
-                            <p className="text-sm text-gray-300 mb-2">{place.description}</p>
-                            <div className="flex items-center gap-2 mb-2">
-                              <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                              <span className="text-sm">{place.rating}/5</span>
-                              <span className="text-sm text-gray-400">• {place.visitors}</span>
-                            </div>
-                            <div className="text-xs text-gray-400">
-                              <strong>Must visit:</strong> {place.highlights.join(', ')}
-                            </div>
-                          </div>
-                        ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* Map progress */}
-                <div className="mt-6 p-4 bg-white/5 rounded-xl border border-white/10">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-white font-medium">Exploration Progress</span>
-                    <span className="text-cyan-400 font-bold">{Math.round((visitedPlaces.size / importantPlaces.length) * 100)}%</span>
-                  </div>
-                  <div className="w-full bg-gray-700 rounded-full h-2">
-                    <div 
-                      className="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full transition-all duration-500"
-                      style={{ width: `${(visitedPlaces.size / importantPlaces.length) * 100}%` }}
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
