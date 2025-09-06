@@ -54,30 +54,8 @@ const BackgroundElements: React.FC<BackgroundElementsProps> = ({ scrollY }) => {
         }}
       />
       
-      {/* Animated constellation with shooting stars */}
+      {/* Shooting stars only */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {Array.from({ length: 80 }).map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              width: `${1 + Math.sin(i) * 2}px`,
-              height: `${1 + Math.sin(i) * 2}px`,
-              background: i % 7 === 0 ? 'rgba(139,92,246,0.8)' : 
-                         i % 7 === 1 ? 'rgba(6,182,212,0.7)' : 
-                         i % 7 === 2 ? 'rgba(236,72,153,0.6)' : 
-                         'rgba(255,255,255,0.4)',
-              left: `${(i * 7.3 + Math.sin(time * 0.1 + i) * 5) % 100}%`,
-              top: `${(i * 11.7 + Math.cos(time * 0.08 + i) * 3) % 100}%`,
-              opacity: 0.1 + Math.sin(time * 0.5 + i) * 0.4,
-              transform: `scale(${0.3 + Math.sin(time * 0.3 + i) * 0.7}) rotate(${time * 10 + i * 30}deg)`,
-              boxShadow: i % 15 === 0 ? `0 0 ${4 + Math.sin(time + i) * 3}px currentColor` : 'none',
-              filter: i % 10 === 0 ? 'blur(0.5px)' : 'none'
-            }}
-          />
-        ))}
-        
-        {/* Shooting stars */}
         {Array.from({ length: 3 }).map((_, i) => (
           <div
             key={`shooting-${i}`}
@@ -94,37 +72,8 @@ const BackgroundElements: React.FC<BackgroundElementsProps> = ({ scrollY }) => {
         ))}
       </div>
 
-      {/* Dynamic particle system with multiple types */}
+      {/* Energy trails only */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {/* Floating travel particles */}
-        {Array.from({ length: 30 }).map((_, i) => (
-          <div
-            key={`particle-${i}`}
-            className="absolute rounded-full"
-            style={{
-              width: `${2 + Math.sin(i) * 3}px`,
-              height: `${2 + Math.sin(i) * 3}px`,
-              background: `${
-                i % 5 === 0 ? `linear-gradient(45deg, rgba(139,92,246,0.6), rgba(139,92,246,0.2))` :
-                i % 5 === 1 ? `linear-gradient(45deg, rgba(6,182,212,0.5), rgba(6,182,212,0.1))` :
-                i % 5 === 2 ? `linear-gradient(45deg, rgba(236,72,153,0.4), rgba(236,72,153,0.1))` :
-                i % 5 === 3 ? `linear-gradient(45deg, rgba(132,204,22,0.4), rgba(132,204,22,0.1))` :
-                `linear-gradient(45deg, rgba(249,115,22,0.3), rgba(249,115,22,0.1))`
-              }`,
-              left: `${(i * 13.7) % 100}%`,
-              top: `${(i * 17.3) % 100}%`,
-              transform: `translate(
-                ${Math.sin(time * 0.5 + i) * 150 + mousePos.x * (5 + i % 10)}px, 
-                ${Math.cos(time * 0.3 + i) * 120 + mousePos.y * (3 + i % 8)}px
-              ) scale(${0.5 + Math.sin(time * 0.4 + i) * 0.5}) rotate(${time * 20 + i * 45}deg)`,
-              opacity: 0.2 + Math.sin(time + i * 0.5) * 0.5,
-              filter: `blur(${Math.sin(time + i) * 2 + 1}px)`,
-              boxShadow: i % 8 === 0 ? `0 0 ${6 + Math.sin(time + i) * 4}px currentColor` : 'none'
-            }}
-          />
-        ))}
-
-        {/* Energy trails */}
         {Array.from({ length: 8 }).map((_, i) => (
           <div
             key={`trail-${i}`}
@@ -179,37 +128,9 @@ const BackgroundElements: React.FC<BackgroundElementsProps> = ({ scrollY }) => {
         ))}
       </div>
 
-      {/* Dynamic mesh gradient overlay with breathing effect */}
-      <div 
-        className="fixed inset-0 pointer-events-none transition-all duration-1000"
-        style={{
-          background: `linear-gradient(135deg, rgba(139,92,246,0.02) 0%, transparent 50%, rgba(6,182,212,0.02) 100%)`,
-          opacity: 0.7 + Math.sin(time * 0.1) * 0.3
-        }}
-      />
 
-      {/* Ultra-enhanced light rays with dynamic behavior */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <div 
-            key={`ray-${i}`}
-            className="absolute top-0 bg-gradient-to-b blur-sm"
-            style={{
-              width: `${0.5 + Math.sin(time * 0.1 + i) * 0.3}px`,
-              height: '100%',
-              left: `${15 + i * 15}%`,
-              background: `linear-gradient(to bottom, 
-                ${i % 3 === 0 ? `rgba(139,92,246,${0.3 + Math.sin(time * 0.2 + i) * 0.2})` :
-                  i % 3 === 1 ? `rgba(6,182,212,${0.25 + Math.cos(time * 0.25 + i) * 0.15})` :
-                  `rgba(236,72,153,${0.2 + Math.sin(time * 0.3 + i) * 0.1})`} 0%, 
-                transparent 60%, 
-                ${i % 2 === 0 ? 'rgba(255,255,255,0.05)' : 'transparent'} 100%)`,
-              transform: `rotate(${Math.sin(time * 0.05 + i) * 6}deg) scaleY(${0.8 + Math.cos(time * 0.1 + i) * 0.3})`,
-              opacity: 0.4 + Math.sin(time * 0.15 + i) * 0.3
-            }}
-          />
-        ))}
-      </div>
+
+
 
       {/* Animated grid with perspective effect */}
       <div 
