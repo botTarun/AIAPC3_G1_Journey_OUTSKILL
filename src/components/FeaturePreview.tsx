@@ -316,6 +316,138 @@ const FeaturePreview = () => {
                 <div 
                   ref={mapRef}
                   className="relative h-96 rounded-xl overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 cursor-grab active:cursor-grabbing select-none border border-white/10"
+                  onMouseDown={handleMouseDown}
+                  onMouseMove={handleMouseMove}
+                  onMouseUp={handleMouseUp}
+                  onMouseLeave={handleMouseUp}
+                >
+                  {/* Map instructions */}
+                  {showMapInstructions && (
+                    <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2 text-white text-sm animate-pulse">
+                      Click and drag to explore the map
+                    </div>
+                  )}
+
+                  {/* Map content */}
+                  <div 
+                    className="absolute inset-0 transition-transform duration-200"
+                    style={{
+                      transform: `translate(${mapPosition.x}px, ${mapPosition.y}px)`
+                    }}
+                  >
+                    {/* India outline (simplified) */}
+                    <svg 
+                      className="absolute inset-0 w-full h-full opacity-20" 
+                      viewBox="0 0 100 100"
+                      preserveAspectRatio="xMidYMid meet"
+                    >
+                      <path
+                        d="M30 20 L70 20 L75 30 L80 50 L75 70 L70 85 L50 90 L30 85 L25 70 L20 50 L25 30 Z"
+                        fill="none"
+                        stroke="white"
+                        strokeWidth="0.5"
+                      />
+                    </svg>
+
+                    {/* Place markers */}
+                    {importantPlaces.map((place) => (
+                      <div
+                        key={place.id}
+                        className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group/marker"
+                        style={{ left: `${place.x}%`, top: `${place.y}%` }}
+                        onMouseEnter={() => setHoveredPlace(place.id)}
+                        onMouseLeave={() => setHoveredPlace(null)}
+                        onClick={() => markPlaceAsVisited(place.id)}
+                      >
+                        {/* Marker */}
+                        <div className={`w-4 h-4 rounded-full border-2 border-white transition-all duration-300 ${
+                          visitedPlaces.has(place.id) 
+                            ? 'bg-green-500 scale-125' 
+                            : hoveredPlace === place.id 
+                              ? 'bg-cyan-400 scale-110' 
+                              : 'bg-red-500'
+                        }`}>
+                          {visitedPlaces.has(place.id) && (
+                            <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
+                          )}
+                        </div>
+
+                        {/* Place label */}
+                        <div className={`absolute top-6 left-1/2 transform -translate-x-1/2 bg-black/80 backdrop-blur-sm rounded-lg px-2 py-1 text-white text-xs whitespace-nowrap transition-all duration-300 ${
+                          hoveredPlace === place.id ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                        }`}>
+                          <div className="font-medium">{place.name}</div>
+                          <div className="text-gray-300 text-xs">{place.description}</div>
+                        </div>
+
+                        {/* Detailed info card */}
+                        {hoveredPlace === place.id && (
+                          <div className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-black/90 backdrop-blur-sm rounded-xl p-4 text-white text-sm w-64 z-10 border border-white/20">
+                            <div className="flex items-center justify-between mb-2">
+                              <h4 className="font-bold text-lg">{place.name}</h4>
+                              <div className="flex items-center gap-1">
+                                <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                                <span className="text-sm">{place.rating}</span>
+                              </div>
+                            </div>
+                            <p className="text-gray-300 mb-3">{place.description}</p>
+                            
+                            <div className="space-y-2">
+                              <div className="flex items-center gap-2 text-xs">
+                                <Users className="w-3 h-3 text-cyan-400" />
+                                <span>{place.visitors}</span>
+                              </div>
+                              
+                              <div>
+                                <div className="text-xs text-gray-400 mb-1">Top Attractions:</div>
+                                <div className="flex flex-wrap gap-1">
+                                  {place.highlights.map((highlight, i) => (
+                                    <span key={i} className="text-xs bg-white/10 rounded px-2 py-1">
+                                      {highlight}
+                                    </span>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                markPlaceAsVisited(place.id);
+                              }}
+                              className={`mt-3 w-full py-2 rounded-lg text-xs font-medium transition-colors ${
+                                visitedPlaces.has(place.id)
+                                  ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+                                  : 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/30'
+                              }`}
+                            >
+                              {visitedPlaces.has(place.id) ? 'Visited ✓' : 'Mark as Visited'}
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Map legend */}
+                <div className="mt-4 flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                      <span className="text-gray-400">Unvisited</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                      <span className="text-gray-400">Visited</span>
+                    </div>
+                  </div>
+                  <div className="text-gray-400">
+                    {visitedPlaces.size} of {importantPlaces.length} places visited
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
