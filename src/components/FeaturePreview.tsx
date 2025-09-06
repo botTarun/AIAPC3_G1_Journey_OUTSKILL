@@ -118,6 +118,66 @@ const FeaturePreview = () => {
     }
   ];
 
+  // Enhanced places data for MapMyIndia
+  const importantPlaces = [
+    { 
+      id: 1, name: 'Delhi', lat: 28.6139, lng: 77.2090,
+      description: 'Historic capital with rich culture',
+      highlights: ['Red Fort', 'India Gate', 'Lotus Temple'],
+      visitors: '32M annually',
+      rating: 4.5
+    },
+    { 
+      id: 2, name: 'Mumbai', lat: 19.0760, lng: 72.8777,
+      description: 'Bollywood & financial hub',
+      highlights: ['Gateway of India', 'Marine Drive', 'Bollywood Studios'],
+      visitors: '48M annually',
+      rating: 4.3
+    },
+    { 
+      id: 3, name: 'Bangalore', lat: 12.9716, lng: 77.5946,
+      description: 'Silicon Valley of India',
+      highlights: ['Lalbagh Garden', 'Bangalore Palace', 'Tech Parks'],
+      visitors: '15M annually',
+      rating: 4.2
+    },
+    { 
+      id: 4, name: 'Chennai', lat: 13.0827, lng: 80.2707,
+      description: 'Cultural capital of South India',
+      highlights: ['Marina Beach', 'Kapaleeshwar Temple', 'Fort St. George'],
+      visitors: '14M annually',
+      rating: 4.1
+    },
+    { 
+      id: 5, name: 'Jaipur', lat: 26.9124, lng: 75.7873,
+      description: 'The magnificent Pink City',
+      highlights: ['Hawa Mahal', 'Amber Fort', 'City Palace'],
+      visitors: '5M annually',
+      rating: 4.7
+    },
+    { 
+      id: 6, name: 'Kolkata', lat: 22.5726, lng: 88.3639,
+      description: 'City of Joy & culture',
+      highlights: ['Victoria Memorial', 'Howrah Bridge', 'Park Street'],
+      visitors: '19M annually',
+      rating: 4.4
+    },
+    { 
+      id: 7, name: 'Goa', lat: 15.2993, lng: 74.1240,
+      description: 'Beach paradise & nightlife',
+      highlights: ['Baga Beach', 'Basilica of Bom Jesus', 'Dudhsagar Falls'],
+      visitors: '8M annually',
+      rating: 4.6
+    },
+    { 
+      id: 8, name: 'Kerala', lat: 10.8505, lng: 76.2711,
+      description: 'Gods Own Country',
+      highlights: ['Backwaters', 'Munnar Hills', 'Spice Gardens'],
+      visitors: '11M annually',
+      rating: 4.8
+    }
+  ];
+
   const openImageModal = (index: number) => {
     setSelectedImageIndex(index);
   };
