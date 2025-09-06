@@ -407,35 +407,6 @@ const FeaturePreview = () => {
                     </svg>
                   </div>
                   
-                  {/* Interactive instructions */}
-                  {showMapInstructions && (
-                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center rounded-xl">
-                      <div className="text-center text-white p-6">
-                        <div className="text-4xl mb-4">🗺️</div>
-                        <h4 className="text-xl font-bold mb-2">Interactive Map</h4>
-                        <p className="text-gray-300 mb-4">Drag to explore • Click markers to visit</p>
-                        <div className="flex items-center justify-center gap-4 text-sm">
-                          <div className="flex items-center gap-2">
-                            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                            <span>Unvisited</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                            <span>Visited</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                  
-                  {/* Enhanced map controls */}
-                  <div className="absolute bottom-4 right-4 bg-black/70 backdrop-blur-sm rounded-xl px-4 py-2 text-white">
-                    <div className="flex items-center gap-2 text-sm">
-                      <Users className="w-4 h-4" />
-                      <span>{visitedPlaces.size}/{importantPlaces.length} places visited</span>
-                    </div>
-                  </div>
-
                   {/* Place tooltip */}
                   {hoveredPlace && (
                     <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-sm rounded-xl p-4 text-white max-w-xs">
