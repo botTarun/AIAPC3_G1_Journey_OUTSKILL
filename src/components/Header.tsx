@@ -82,13 +82,6 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage = 'home' }) => 
               <div className="hidden md:flex items-center space-x-6">
                 <a 
                   href="#" 
-                  className={`nav-link ${currentPage === 'home' ? 'text-white' : ''}`}
-                  onClick={handleLogoClick}
-                >
-                  Home
-                </a>
-                <a 
-                  href="#" 
                   className={`nav-link ${currentPage === 'travel-guides' ? 'text-white' : ''}`}
                   onClick={handleTravelGuidesClick}
                 >
