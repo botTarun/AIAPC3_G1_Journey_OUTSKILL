@@ -5,10 +5,16 @@ import {
   Star, Heart, Share2, ChevronRight, Eye, CreditCard,
   Wifi, Coffee, Dumbbell, Waves, Shield, Award
 } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
+import BookingModal from './BookingModal';
+import { type BookingItem } from '../lib/booking';
 
 const BookingsPage = () => {
+  const { user } = useAuth();
   const [activeCategory, setActiveCategory] = useState('flights');
   const [searchQuery, setSearchQuery] = useState('');
+  const [bookingModalOpen, setBookingModalOpen] = useState(false);
+  const [selectedBookingItem, setSelectedBookingItem] = useState<BookingItem | null>(null);
   const [animatedStats, setAnimatedStats] = useState({
     bookings: 0,
     partners: 0,
@@ -172,8 +178,28 @@ const BookingsPage = () => {
     ? featuredDeals 
     : featuredDeals.filter(deal => deal.category === activeCategory);
 
+  const handleBookNow = (deal: any) => {
+    if (!user) {
+      alert('Please sign in to make a booking');
+      return;
+    }
+
+    const bookingItem: BookingItem = {
+      type: deal.category as any,
+      name: deal.title,
+      description: deal.subtitle,
+      provider: deal.provider,
+      quantity: 1,
+      unitPrice: deal.price,
+      itemData: deal,
+    };
+
+    setSelectedBookingItem(bookingItem);
+    setBookingModalOpen(true);
+  };
   return (
-    <div className="min-h-screen bg-dark text-white">
+    <>
+      <div className="min-h-screen bg-dark text-white">
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-radial from-blue-900/20 via-dark to-dark" />
@@ -353,7 +379,10 @@ const BookingsPage = () => {
                   </div>
 
                   <div className="flex space-x-3">
-                    <button className="flex-1 btn-primary bg-gradient-to-r from-blue-500 to-cyan-500">
+                    <button 
+                      onClick={() => handleBookNow(deal)}
+                      className="flex-1 btn-primary bg-gradient-to-r from-blue-500 to-cyan-500"
+                    >
                       Book Now
                     </button>
                     <button className="btn-secondary p-3">
@@ -428,6 +457,13 @@ const BookingsPage = () => {
         </div>
       </section>
     </div>
+
+      <BookingModal
+        isOpen={bookingModalOpen}
+        onClose={() => setBookingModalOpen(false)}
+        bookingItem={selectedBookingItem}
+      />
+    </>
   );
 };
 
