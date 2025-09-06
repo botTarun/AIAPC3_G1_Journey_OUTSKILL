@@ -4,8 +4,8 @@ import { useAuth } from '../contexts/AuthContext';
 import AuthModal from './AuthModal';
 
 interface HeaderProps {
-  onNavigate?: (page: 'home' | 'experiences' | 'travel-guides' | 'hotels') => void;
-  currentPage?: 'home' | 'experiences' | 'travel-guides' | 'hotels';
+  onNavigate?: (page: 'home' | 'experiences' | 'travel-guides' | 'bookings') => void;
+  currentPage?: 'home' | 'experiences' | 'travel-guides' | 'bookings';
 }
 
 const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage = 'home' }) => {
@@ -54,10 +54,10 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage = 'home' }) => 
     }
   };
 
-  const handleHotelsClick = (e: React.MouseEvent) => {
+  const handleBookingsClick = (e: React.MouseEvent) => {
     e.preventDefault();
     if (onNavigate) {
-      onNavigate('hotels');
+      onNavigate('bookings');
     }
   };
   return (
@@ -89,10 +89,10 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage = 'home' }) => 
                 </a>
                 <a 
                   href="#" 
-                  className={`nav-link ${currentPage === 'hotels' ? 'text-white' : ''}`}
-                  onClick={handleHotelsClick}
+                  className={`nav-link ${currentPage === 'bookings' ? 'text-white' : ''}`}
+                  onClick={handleBookingsClick}
                 >
-                  Hotels
+                  Bookings
                 </a>
                 <a 
                   href="#" 

@@ -6,11 +6,11 @@ import FeatureIcons from './components/FeatureIcons';
 import BackgroundElements from './components/BackgroundElements';
 import ExperiencesPage from './components/ExperiencesPage';
 import TravelGuidesPage from './components/TravelGuidesPage';
-import HotelsPage from './components/HotelsPage';
+import BookingsPage from './components/BookingsPage';
 
 function App() {
   const [scrollY, setScrollY] = useState(0);
-  const [currentPage, setCurrentPage] = useState<'home' | 'experiences' | 'travel-guides' | 'hotels'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'experiences' | 'travel-guides' | 'bookings'>('home');
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -28,12 +28,12 @@ function App() {
     );
   }
 
-  if (currentPage === 'hotels') {
+  if (currentPage === 'bookings') {
     return (
       <div className="min-h-screen bg-dark text-white overflow-x-hidden">
         <BackgroundElements scrollY={scrollY} />
         <Header onNavigate={setCurrentPage} currentPage={currentPage} />
-        <HotelsPage />
+        <BookingsPage />
       </div>
     );
   }
