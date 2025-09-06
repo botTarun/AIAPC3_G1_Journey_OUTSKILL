@@ -178,6 +178,16 @@ const BookingsPage = () => {
     ? featuredDeals 
     : featuredDeals.filter(deal => deal.category === activeCategory);
 
+  // Map plural category names to singular item types for database
+  const categoryToItemType = {
+    'flights': 'flight',
+    'hotels': 'hotel',
+    'cars': 'car',
+    'activities': 'activity',
+    'restaurants': 'restaurant',
+    'transportation': 'transportation'
+  };
+
   const handleBookNow = (deal: any) => {
     if (!user) {
       alert('Please sign in to make a booking');
@@ -185,7 +195,7 @@ const BookingsPage = () => {
     }
 
     const bookingItem: BookingItem = {
-      type: deal.category as any,
+      type: categoryToItemType[deal.category as keyof typeof categoryToItemType] as any,
       name: deal.title,
       description: deal.subtitle,
       provider: deal.provider,
