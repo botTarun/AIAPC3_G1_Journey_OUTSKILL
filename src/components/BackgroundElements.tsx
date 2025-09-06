@@ -94,107 +94,6 @@ const BackgroundElements: React.FC<BackgroundElementsProps> = ({ scrollY }) => {
         ))}
       </div>
 
-      {/* Super enhanced floating orbs with complex behaviors */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {/* Main adventure orb with trailing particles */}
-        <div 
-          className="absolute rounded-full blur-3xl"
-          style={{
-            width: `${450 + Math.sin(time * 0.1) * 100}px`,
-            height: `${450 + Math.sin(time * 0.1) * 100}px`,
-            background: `radial-gradient(circle, 
-              rgba(139,92,246,${0.2 + Math.sin(time * 0.2) * 0.1}) 0%, 
-              rgba(139,92,246,${0.08 + Math.sin(time * 0.15) * 0.05}) 40%, 
-              transparent 70%)`,
-            left: '10%',
-            top: '20%',
-            transform: `translate(
-              ${Math.sin(time * 0.3) * 60 + mousePos.x * 30}px, 
-              ${scrollY * 0.1 + Math.cos(time * 0.2) * 70 + mousePos.y * 20}px
-            ) scale(${1 + Math.sin(time * 0.1) * 0.2}) rotate(${time * 5}deg)`,
-          }}
-        />
-
-        {/* Ocean/Sky orb with wave effect */}
-        <div 
-          className="absolute rounded-full blur-3xl"
-          style={{
-            width: `${380 + Math.cos(time * 0.12) * 80}px`,
-            height: `${380 + Math.cos(time * 0.12) * 80}px`,
-            background: `radial-gradient(ellipse ${100 + Math.sin(time * 0.3) * 20}% ${100 + Math.cos(time * 0.4) * 30}%, 
-              rgba(6,182,212,${0.15 + Math.cos(time * 0.25) * 0.08}) 0%, 
-              rgba(6,182,212,${0.05 + Math.sin(time * 0.2) * 0.03}) 40%, 
-              transparent 70%)`,
-            right: '15%',
-            top: '30%',
-            transform: `translate(
-              ${Math.cos(time * 0.4) * -50 + mousePos.x * -25}px, 
-              ${scrollY * -0.08 + Math.sin(time * 0.25) * 80 + mousePos.y * -15}px
-            ) scale(${1 + Math.cos(time * 0.15) * 0.25}) skew(${Math.sin(time * 0.1) * 5}deg)`,
-          }}
-        />
-
-        {/* Sunset orb with pulsing glow */}
-        <div 
-          className="absolute rounded-full blur-3xl"
-          style={{
-            width: `${330 + Math.sin(time * 0.18) * 70}px`,
-            height: `${330 + Math.sin(time * 0.18) * 70}px`,
-            background: `radial-gradient(circle, 
-              rgba(236,72,153,${0.12 + Math.sin(time * 0.4) * 0.06}) 0%, 
-              rgba(249,115,22,${0.08 + Math.cos(time * 0.3) * 0.04}) 30%,
-              rgba(236,72,153,${0.04 + Math.sin(time * 0.2) * 0.02}) 60%, 
-              transparent 80%)`,
-            left: '60%',
-            bottom: '20%',
-            transform: `translate(
-              ${Math.sin(time * 0.35) * 45 + mousePos.x * 20}px, 
-              ${scrollY * 0.05 + Math.cos(time * 0.3) * 55 + mousePos.y * 25}px
-            ) scale(${1 + Math.sin(time * 0.2) * 0.18}) rotate(${-time * 3}deg)`,
-            filter: `blur(${40 + Math.sin(time * 0.5) * 10}px)`,
-          }}
-        />
-
-        {/* Energy orb with electric effect */}
-        <div 
-          className="absolute rounded-full"
-          style={{
-            width: `${280 + Math.cos(time * 0.22) * 60}px`,
-            height: `${280 + Math.cos(time * 0.22) * 60}px`,
-            background: `conic-gradient(from ${time * 30}deg, 
-              rgba(249,115,22,0.1), rgba(255,193,7,0.08), 
-              rgba(249,115,22,0.06), transparent, 
-              rgba(249,115,22,0.04), rgba(255,193,7,0.06))`,
-            left: '20%',
-            bottom: '30%',
-            transform: `translate(
-              ${Math.cos(time * 0.25) * 35 + mousePos.x * 15}px, 
-              ${scrollY * -0.03 + Math.sin(time * 0.4) * 45 + mousePos.y * 18}px
-            ) scale(${1 + Math.cos(time * 0.18) * 0.15})`,
-            filter: `blur(35px) contrast(1.2)`,
-          }}
-        />
-
-        {/* Nature orb with organic movement */}
-        <div 
-          className="absolute rounded-full blur-3xl"
-          style={{
-            width: `${260 + Math.sin(time * 0.16) * 50}px`,
-            height: `${260 + Math.sin(time * 0.16) * 50}px`,
-            background: `radial-gradient(circle at ${50 + Math.sin(time * 0.3) * 20}% ${50 + Math.cos(time * 0.4) * 20}%, 
-              rgba(132,204,22,${0.08 + Math.sin(time * 0.3) * 0.04}) 0%, 
-              rgba(34,197,94,${0.06 + Math.cos(time * 0.25) * 0.03}) 40%, 
-              transparent 70%)`,
-            right: '30%',
-            bottom: '40%',
-            transform: `translate(
-              ${Math.sin(time * 0.28) * -30 + mousePos.x * -12}px, 
-              ${scrollY * 0.07 + Math.cos(time * 0.33) * 50 + mousePos.y * 22}px
-            ) scale(${1 + Math.sin(time * 0.12) * 0.12}) rotate(${time * 8}deg)`,
-          }}
-        />
-      </div>
-
       {/* Dynamic particle system with multiple types */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         {/* Floating travel particles */}
@@ -284,13 +183,7 @@ const BackgroundElements: React.FC<BackgroundElementsProps> = ({ scrollY }) => {
       <div 
         className="fixed inset-0 pointer-events-none transition-all duration-1000"
         style={{
-          background: `
-            radial-gradient(circle at ${20 + mousePos.x * 10}% ${50 + mousePos.y * 5}%, rgba(139,92,246,${0.04 + Math.sin(time * 0.1) * 0.02}) 0%, transparent 50%),
-            radial-gradient(circle at ${80 + mousePos.x * -8}% ${20 + mousePos.y * 8}%, rgba(6,182,212,${0.04 + Math.cos(time * 0.12) * 0.02}) 0%, transparent 50%),
-            radial-gradient(circle at ${40 + mousePos.x * 6}% ${80 + mousePos.y * -6}%, rgba(236,72,153,${0.04 + Math.sin(time * 0.15) * 0.02}) 0%, transparent 50%),
-            radial-gradient(circle at ${80 + mousePos.x * -5}% ${80 + mousePos.y * -5}%, rgba(132,204,22,${0.03 + Math.cos(time * 0.08) * 0.01}) 0%, transparent 50%),
-            radial-gradient(circle at ${40 + mousePos.x * 4}% ${40 + mousePos.y * 4}%, rgba(249,115,22,${0.03 + Math.sin(time * 0.18) * 0.01}) 0%, transparent 50%)
-          `,
+          background: `linear-gradient(135deg, rgba(139,92,246,0.02) 0%, transparent 50%, rgba(6,182,212,0.02) 100%)`,
           opacity: 0.7 + Math.sin(time * 0.1) * 0.3
         }}
       />
