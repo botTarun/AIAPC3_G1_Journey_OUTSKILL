@@ -224,6 +224,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, bookingIte
                       value={contactDetails.phone}
                       onChange={(e) => setContactDetails({...contactDetails, phone: e.target.value})}
                       className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
+                     required
                     />
                   </div>
                   
@@ -239,7 +240,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, bookingIte
 
               <button
                 onClick={handleBooking}
-                disabled={loading || !travelers[0].firstName || !travelers[0].lastName || !contactDetails.email}
+               disabled={loading || !travelers[0].firstName || !travelers[0].lastName || !contactDetails.email || !contactDetails.phone}
                 className="w-full btn-primary py-4 text-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? (
