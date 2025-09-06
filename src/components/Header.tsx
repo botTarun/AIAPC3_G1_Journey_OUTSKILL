@@ -4,8 +4,8 @@ import { useAuth } from '../contexts/AuthContext';
 import AuthModal from './AuthModal';
 
 interface HeaderProps {
-  onNavigate?: (page: 'home' | 'experiences') => void;
-  currentPage?: 'home' | 'experiences';
+  onNavigate?: (page: 'home' | 'experiences' | 'travel-guides' | 'hotels') => void;
+  currentPage?: 'home' | 'experiences' | 'travel-guides' | 'hotels';
 }
 
 const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage = 'home' }) => {
@@ -47,6 +47,19 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage = 'home' }) => 
     }
   };
 
+  const handleTravelGuidesClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (onNavigate) {
+      onNavigate('travel-guides');
+    }
+  };
+
+  const handleHotelsClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (onNavigate) {
+      onNavigate('hotels');
+    }
+  };
   return (
     <>
       <header 
@@ -74,8 +87,20 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage = 'home' }) => 
                 >
                   Home
                 </a>
-                <a href="#" className="nav-link">Travel Guides</a>
-                <a href="#" className="nav-link">Hotels</a>
+                <a 
+                  href="#" 
+                  className={`nav-link ${currentPage === 'travel-guides' ? 'text-white' : ''}`}
+                  onClick={handleTravelGuidesClick}
+                >
+                  Travel Guides
+                </a>
+                <a 
+                  href="#" 
+                  className={`nav-link ${currentPage === 'hotels' ? 'text-white' : ''}`}
+                  onClick={handleHotelsClick}
+                >
+                  Hotels
+                </a>
                 <a 
                   href="#" 
                   className={`nav-link ${currentPage === 'experiences' ? 'text-white' : ''}`}
